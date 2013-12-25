@@ -291,7 +291,12 @@
                 event.preventIClick = function() {
                     self.iclickPrevented = true;
                 };
-                event.isMoved = function() {
+
+                event.isIClickPrevented = function() {
+                    return self.iclickPrevented;
+                };
+
+                event.hasIClickMoved = function() {
                     return self.moved;
                 };
             }

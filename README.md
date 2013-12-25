@@ -1,4 +1,4 @@
-IClick
+IClick (Immediate Click)
 =======
 
 On most touch devices, when a user clicks an element, there is a 300ms delay before the actual `click`
@@ -37,4 +37,13 @@ require(['IClick'], function(IClick){
 
 for more info on API and on how to add drivers, consult the [docs](http://cheggeng.github.io/IClick/docs)
 
+## Advanced utilities
 
+In some cases, you would want to prevent the costume event from firing (for example if a mousedown has triggered
+on a specific element).
+
+IClick allows this by adding the following methods to all the events it listens to on the *capturing* phase:
+
+ * `preventIClick` - calling this method will prevent an iclick to be fired
+ * `isIClickedPrevented` - returns whether or not iclick has already been prevented on the current flow
+ * `hasIClickedMoved` - whether or not the indicator moved in this current flow
