@@ -1,0 +1,8 @@
+{
+    "name": "IClick",
+    "options": {
+        "linkNatives": "true",
+        "outdir": "./docs",
+        "paths": "./src"
+    }
+}
