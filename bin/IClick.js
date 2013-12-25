@@ -49,14 +49,6 @@
         this.attach();
     };
 
-    /**
-     * @property EVENT_NAME
-     * @type {string}
-     * @public
-     *
-     * this is the name of the event that will be fired when an immediate click is triggered
-     */
-    IClick.EVENT_NAME = 'IClick';
 
     /**
      * Adds device support
@@ -106,6 +98,22 @@
     IClick.prototype = {
         constructor: IClick,
 
+        /**
+         * @property event_name
+         * @type {string}
+         * @static
+         *
+         * this is the name of the event that will be fired when an immediate click is triggered
+         */
+        EVENT_NAME : 'iclick',
+
+        /**
+         * whether or not to always prevent the real click event from firing
+         * @property prevent_click
+         * @public
+         * @type {boolean}
+         */
+        prevent_click : false,
         /**
          * use this property within a driver to prevent the event from triggering
          * @property IClickPrevented
@@ -214,14 +222,14 @@
             }
 
             IClickEvent = document.createEvent('MouseEvents');
-            IClickEvent.initMouseEvent(IClick.EVENT_NAME, true, true, event.view, 1,
+            IClickEvent.initMouseEvent(this.event_name, true, true, event.view, 1,
                 _event.screenX, _event.screenY, _event.clientX, _event.clientY,
                 event.ctrlKey, event.altKey, event.shiftKey, event.metaKey,
                 0, null);
 
             target.dispatchEvent(IClickEvent);
 
-            if (IClickEvent.defaultPrevented) {
+            if (IClickEvent.defaultPrevented || this.prevent_click) {
                 event.preventDefault();
             }
 
