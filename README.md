@@ -35,6 +35,6 @@ require(['IClick'], function(IClick){
 });
 ```
 
-for more info on API and on how to add drivers, consult the (docs)[http://cheggeng.github.io/IClick/docs]
+for more info on API and on how to add drivers, consult the [docs](http://cheggeng.github.io/IClick/docs)
 
 
