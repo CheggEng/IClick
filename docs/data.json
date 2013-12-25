@@ -103,7 +103,7 @@
             "line": 119,
             "description": "use this property within a driver to prevent the event from triggering",
             "itemtype": "property",
-            "name": "IClickPrevented",
+            "name": "iclickPrevented",
             "access": "protected",
             "tagname": "",
             "type": "{Boolean}",

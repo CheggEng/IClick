@@ -119,11 +119,11 @@
         prevent_click : false,
         /**
          * use this property within a driver to prevent the event from triggering
-         * @property IClickPrevented
+         * @property iclickPrevented
          * @protected
          * @type {Boolean}
          */
-        IClickPrevented : false,
+        iclickPrevented : false,
 
         /**
          * This property should be used by drivers to switch into the "active" stack
@@ -217,7 +217,7 @@
                 target = _event.target,
                 IClickEvent;
 
-            if (this.moved && this.IClickPrevented) return;
+            if (this.moved && this.iclickPrevented) return;
 
             // Find the last touched element
             while (target.nodeType !== 1) {
@@ -253,7 +253,7 @@
             this.state = "INITIAL";
             this.removeEvents();
             this.started = false;
-            this.IClickPrevented = false;
+            this.iclickPrevented = false;
 
             return this;
         },
@@ -289,10 +289,7 @@
 
             if (phase === "CAPTURING") {
                 event.preventIClick = function() {
-                    self.IClickPrevented = true;
-                };
-                event.IClickPrevented = function() {
-                    return self.IClickPrevented;
+                    self.iclickPrevented = true;
                 };
                 event.isMoved = function() {
                     return self.moved;
