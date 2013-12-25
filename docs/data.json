@@ -1,0 +1,183 @@
+{
+    "project": {
+        "name": "IClick",
+        "description": "Immediate Click suppolier for the browser across multiple devices",
+        "version": "1.0.0"
+    },
+    "files": {
+        "src/IClick.js": {
+            "name": "src/IClick.js",
+            "modules": {},
+            "classes": {
+                "IClick": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "IClick": {
+            "name": "IClick",
+            "shortname": "IClick",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src/IClick.js",
+            "line": 33,
+            "description": "This class provides a costume events that triggers immediately after\na user has clicked an element.\nClass supports adding new drivers to allow multiple devices inputs.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "root",
+                    "description": "if provided will use this element as root element",
+                    "type": "Element",
+                    "optional": true
+                }
+            ]
+        }
+    },
+    "classitems": [
+        {
+            "file": "src/IClick.js",
+            "line": 52,
+            "description": "Adds device support",
+            "itemtype": "method",
+            "name": "addDevice",
+            "static": 1,
+            "params": [
+                {
+                    "name": "name",
+                    "description": "name of device",
+                    "type": "String"
+                },
+                {
+                    "name": "config",
+                    "description": "device configurations",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "start_event",
+                            "description": "name of start event",
+                            "type": "String"
+                        },
+                        {
+                            "name": "event_map",
+                            "description": "a map of event names and their phase name. eg:\n          {\n            mousedown : 'START_EVENT',\n            mousemove : 'MOVE_EVENT',\n            mouseup   : 'END_EVENT'\n          }",
+                            "type": "Objcet"
+                        },
+                        {
+                            "name": "handlers",
+                            "description": "map of event handlers. basic structure:\n\n         type : {\n          INITIAL : {\n               TYPE : {\n                  CAPTURING : fn(ev,_ev){}, //optional\n                  BUBBLING : fn(ev,_ev){} //optional\n               }\n          },\n          ACTIVE : {\n               TYPE : {\n                   CAPTURING : fn(ev,_ev){}, //optional\n                   BUBBLING : fn(ev,_ev){} //optional\n               }\n          }\n        }",
+                            "type": "Objcet"
+                        }
+                    ]
+                }
+            ],
+            "class": "IClick"
+        },
+        {
+            "file": "src/IClick.js",
+            "line": 100,
+            "itemtype": "property",
+            "name": "event_name",
+            "type": "{string}",
+            "static": "this is the name of the event that will be fired when an immediate click is triggered",
+            "class": "IClick"
+        },
+        {
+            "file": "src/IClick.js",
+            "line": 109,
+            "description": "whether or not to always prevent the real click event from firing",
+            "itemtype": "property",
+            "name": "prevent_click",
+            "access": "public",
+            "tagname": "",
+            "type": "{boolean}",
+            "class": "IClick"
+        },
+        {
+            "file": "src/IClick.js",
+            "line": 116,
+            "description": "use this property within a driver to prevent the event from triggering",
+            "itemtype": "property",
+            "name": "IClickPrevented",
+            "access": "protected",
+            "tagname": "",
+            "type": "{Boolean}",
+            "class": "IClick"
+        },
+        {
+            "file": "src/IClick.js",
+            "line": 124,
+            "description": "This property should be used by drivers to switch into the \"active\" stack",
+            "itemtype": "property",
+            "name": "state",
+            "access": "protected",
+            "tagname": "",
+            "type": "{String}",
+            "class": "IClick"
+        },
+        {
+            "file": "src/IClick.js",
+            "line": 141,
+            "description": "attaches IClick to the root element",
+            "itemtype": "method",
+            "name": "attach",
+            "access": "public",
+            "tagname": "",
+            "chainable": 1,
+            "class": "IClick"
+        },
+        {
+            "file": "src/IClick.js",
+            "line": 157,
+            "description": "detaches IClick from the root element",
+            "itemtype": "method",
+            "name": "detach",
+            "access": "public",
+            "tagname": "",
+            "chainable": 1,
+            "class": "IClick"
+        },
+        {
+            "file": "src/IClick.js",
+            "line": 178,
+            "description": "check if user moved indicator more than allowed",
+            "itemtype": "method",
+            "name": "isMoved",
+            "access": "protected",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "IClick"
+        },
+        {
+            "file": "src/IClick.js",
+            "line": 204,
+            "description": "fires the IClick event",
+            "itemtype": "method",
+            "name": "fireIClick",
+            "access": "protected",
+            "tagname": "",
+            "chainable": 1,
+            "class": "IClick"
+        },
+        {
+            "file": "src/IClick.js",
+            "line": 241,
+            "description": "reset IClick checks. remove all events handlers. Must be called on canceling states.",
+            "itemtype": "method",
+            "name": "reset",
+            "access": "protected",
+            "tagname": "",
+            "chainable": 1,
+            "class": "IClick"
+        }
+    ],
+    "warnings": []
+}
