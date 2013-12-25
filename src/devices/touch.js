@@ -2,7 +2,6 @@ define(['../IClick'], function(IClick){
     IClick.addDevice('touch', {
         start_event : 'touchstart',
         event_map : {
-            'touchstart' : 'START_EVENT',
             'touchend'   : 'T_END_EVENT',
             'touchmove'  : 'T_MOVE_EVENT',
             'touchcancel': 'T_CANCEL_EVENT'
@@ -11,7 +10,6 @@ define(['../IClick'], function(IClick){
             "INITIAL": {
                 "START_EVENT": {
                     "CAPTURING": function(event, _event) {
-                        this.state = "TOUCHED";
                         // If there are more than two fingers touched
                         // the screen, do not fire IClick.
                         if (event.touches.length > 1) {

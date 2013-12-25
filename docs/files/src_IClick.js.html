@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src&#x2F;IClick.js - IClick</title>
+    <title>src&#x2F;iClick.js - IClick</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -82,7 +82,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src&#x2F;IClick.js</h1>
+                        <h1 class="file-heading">File: src&#x2F;iClick.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -130,6 +130,9 @@
      *&#x2F;
     function IClick(root) {
         this.resetFiredFlag = this.resetFiredFlag.bind(this);
+        this.eventHandlers = IClick.eventHandlers;
+        this.start_events = IClick.start_events;
+        this.event_map = IClick.event_map;
 
         this.rootElement = root || document;
 
@@ -174,7 +177,7 @@
     IClick.addDevice = function addDevice(name, config) {
         IClick.start_events[config.start_event] = name;
         IClick.eventHandlers[name] = config.handlers;
-        extend(IClick.event_map, config.event_map);
+        IClick.event_map[name] = config.event_map;
     };
 
 
@@ -192,7 +195,7 @@
          *
          * this is the name of the event that will be fired when an immediate click is triggered
          *&#x2F;
-        EVENT_NAME : &#x27;iclick&#x27;,
+        event_name : &#x27;iclick&#x27;,
 
         &#x2F;**
          * whether or not to always prevent the real click event from firing
@@ -235,7 +238,7 @@
         attach : function(){
             var name;
 
-            for (name in IClick.start_events) {
+            for (name in this.start_events) {
                 this.rootElement.addEventListener(name, this, true);
             }
 
@@ -251,7 +254,7 @@
         detach : function(){
             var name;
 
-            for (name in IClick.start_events) {
+            for (name in this.start_events) {
                 this.rootElement.removeEventListener(name, this, true);
             }
 
@@ -321,7 +324,8 @@
             }
 
             this.$fired = true;
-            setTimeout(this.resetFiredFlag, 300);
+            clearTimeout(this.handle);
+            this.handle = setTimeout(this.resetFiredFlag, 300);
 
             return this;
         },
@@ -343,21 +347,27 @@
 
         &#x2F;&#x2F; === private methods === &#x2F;&#x2F;
 
+        getType : function(ev) {
+            var type = ev.type;
+
+            if (type in this.start_events) return &#x27;START_EVENT&#x27;;
+            else return this.event_map[this.input_type][type];
+        },
+
         handleEvent: function(event) {
             var self = this,
                 _event = event.changedTouches ? event.changedTouches[0] : event,
                 phase,
-                ignore_start = this.state == &#x27;INITIAL&#x27; &amp;&amp; this.$fired,
                 eventType;
 
             phase = event.eventPhase === Event.CAPTURING_PHASE ?
                 &quot;CAPTURING&quot; :
                 (event.eventPhase === Event.BUBBLING_PHASE ? &quot;BUBBLING&quot; : event.eventPhase);
 
-            eventType = IClick.event_map[event.type];
+            eventType = this.getType(event);
 
             if (eventType == &#x27;START_EVENT&#x27;) {
-                if (!ignore_start &amp;&amp; !this.started) {
+                if (!this.$fired &amp;&amp; !this.started) {
                     this.init(event.type);
                 }else{
                     return;
@@ -376,7 +386,7 @@
                 };
             }
 
-            this.event = _event;
+            this.event = event;
 
             if (this.fireHandler(eventType, phase, event, _event) &amp;&amp; this.state == &#x27;INITIAL&#x27;) {
                 this.addEvents();
@@ -395,9 +405,9 @@
         },
 
         init : function(type){
-            if (!(type in IClick.start_events)) throw new Error(&quot;IClick- unknow start event: &quot; + type);
-
-            this.input_type = IClick.start_events[type];
+            if (!(type in this.start_events)) throw new Error(&quot;IClick- unknow start event: &quot; + type);
+            this.reset();
+            this.input_type = this.start_events[type];
 
             this.handlers = this.eventHandlers[this.input_type];
 
@@ -407,9 +417,7 @@
         addEvents: function() {
             var name;
 
-            for (name in IClick.event_map[this.input_type]) {
-                if (name == this.start_events[this.input_type]) continue;
-
+            for (name in this.event_map[this.input_type]) {
                 this.rootElement.addEventListener(name,this, true);
                 this.rootElement.addEventListener(name,this, false);
             }
@@ -418,9 +426,7 @@
         removeEvents: function() {
             var name;
 
-            for (name in IClick.names[this.input_type]) {
-                if (name == this.start_events[this.input_type]) continue;
-
+            for (name in this.event_map[this.input_type]) {
                 this.rootElement.removeEventListener(name,this, true);
                 this.rootElement.removeEventListener(name,this, false);
             }

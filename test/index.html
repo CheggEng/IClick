@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IClick Test</title>
+    <style type="text/css">
+        button, button:active {
+            display: block;
+            border:3px solid black;
+            background: #ddd;
+            color:black;
+            padding: 50px;
+            margin:20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="target1">
+        <button class="click">Click Me!!! (iclick should generate an entry, click should trigger)</button>
+        <button class="no-click">Click Me!!! (iclick should trigger, click should not)</button>
+    </div>
+    <div class="target2">
+    </div>
+    <button>Click Me!!! (only click should generate an entry)</button>
+    <ul>
+
+    </ul>
+    <script type="text/javascript" src="../node_modules/requirejs/require.js"></script>
+    <script type="text/javascript">
+        var list = document.querySelector('ul');
+
+        function log(msg){
+            list.innerHTML += "<li>"+msg+"</li>";
+        }
+
+        require(['../src/IClick','../src/devices/touch','../src/devices/mouse'], function(IClick){
+            var target = document.querySelector('.target1');
+            new IClick(target);
+
+            document.addEventListener('iclick', function(){
+                log("iclick triggered");
+            });
+
+            document.addEventListener('click', function(){
+                log("click triggered");
+            });
+
+            document.querySelector('.no-click').addEventListener('iclick', function(e){
+                e.preventDefault();
+            });
+        });
+    </script>
+</body>
+</html>

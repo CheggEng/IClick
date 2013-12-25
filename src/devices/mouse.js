@@ -2,7 +2,6 @@ define(['../IClick'], function(IClick){
     IClick.addDevice('mouse' , {
         start_event : 'mousedown',
         event_map : {
-            'mousedown'  : 'START_EVENT',
             'mouseup'    : 'M_END_EVENT',
             'mousemove'  : 'MOVE_EVENT'
         },
@@ -33,7 +32,6 @@ define(['../IClick'], function(IClick){
                 },
                 "M_END_EVENT": {
                     "BUBBLING": function(event, _event) {
-                        this.state = "INITIAL";
                         this.reset();
                         if (this.firstClickTarget === _event.target) {
                             this.fireIClick();

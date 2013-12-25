@@ -43,6 +43,9 @@
      */
     function IClick(root) {
         this.resetFiredFlag = this.resetFiredFlag.bind(this);
+        this.eventHandlers = IClick.eventHandlers;
+        this.start_events = IClick.start_events;
+        this.event_map = IClick.event_map;
 
         this.rootElement = root || document;
 
@@ -87,7 +90,7 @@
     IClick.addDevice = function addDevice(name, config) {
         IClick.start_events[config.start_event] = name;
         IClick.eventHandlers[name] = config.handlers;
-        extend(IClick.event_map, config.event_map);
+        IClick.event_map[name] = config.event_map;
     };
 
 
@@ -105,7 +108,7 @@
          *
          * this is the name of the event that will be fired when an immediate click is triggered
          */
-        EVENT_NAME : 'iclick',
+        event_name : 'iclick',
 
         /**
          * whether or not to always prevent the real click event from firing
@@ -148,7 +151,7 @@
         attach : function(){
             var name;
 
-            for (name in IClick.start_events) {
+            for (name in this.start_events) {
                 this.rootElement.addEventListener(name, this, true);
             }
 
@@ -164,7 +167,7 @@
         detach : function(){
             var name;
 
-            for (name in IClick.start_events) {
+            for (name in this.start_events) {
                 this.rootElement.removeEventListener(name, this, true);
             }
 
@@ -234,7 +237,8 @@
             }
 
             this.$fired = true;
-            setTimeout(this.resetFiredFlag, 300);
+            clearTimeout(this.handle);
+            this.handle = setTimeout(this.resetFiredFlag, 300);
 
             return this;
         },
@@ -256,21 +260,27 @@
 
         // === private methods === //
 
+        getType : function(ev) {
+            var type = ev.type;
+
+            if (type in this.start_events) return 'START_EVENT';
+            else return this.event_map[this.input_type][type];
+        },
+
         handleEvent: function(event) {
             var self = this,
                 _event = event.changedTouches ? event.changedTouches[0] : event,
                 phase,
-                ignore_start = this.state == 'INITIAL' && this.$fired,
                 eventType;
 
             phase = event.eventPhase === Event.CAPTURING_PHASE ?
                 "CAPTURING" :
                 (event.eventPhase === Event.BUBBLING_PHASE ? "BUBBLING" : event.eventPhase);
 
-            eventType = IClick.event_map[event.type];
+            eventType = this.getType(event);
 
             if (eventType == 'START_EVENT') {
-                if (!ignore_start && !this.started) {
+                if (!this.$fired && !this.started) {
                     this.init(event.type);
                 }else{
                     return;
@@ -289,7 +299,7 @@
                 };
             }
 
-            this.event = _event;
+            this.event = event;
 
             if (this.fireHandler(eventType, phase, event, _event) && this.state == 'INITIAL') {
                 this.addEvents();
@@ -308,9 +318,9 @@
         },
 
         init : function(type){
-            if (!(type in IClick.start_events)) throw new Error("IClick- unknow start event: " + type);
-
-            this.input_type = IClick.start_events[type];
+            if (!(type in this.start_events)) throw new Error("IClick- unknow start event: " + type);
+            this.reset();
+            this.input_type = this.start_events[type];
 
             this.handlers = this.eventHandlers[this.input_type];
 
@@ -320,9 +330,7 @@
         addEvents: function() {
             var name;
 
-            for (name in IClick.event_map[this.input_type]) {
-                if (name == this.start_events[this.input_type]) continue;
-
+            for (name in this.event_map[this.input_type]) {
                 this.rootElement.addEventListener(name,this, true);
                 this.rootElement.addEventListener(name,this, false);
             }
@@ -331,9 +339,7 @@
         removeEvents: function() {
             var name;
 
-            for (name in IClick.names[this.input_type]) {
-                if (name == this.start_events[this.input_type]) continue;
-
+            for (name in this.event_map[this.input_type]) {
                 this.rootElement.removeEventListener(name,this, true);
                 this.rootElement.removeEventListener(name,this, false);
             }
@@ -359,7 +365,6 @@ define('devices/mouse.js',['../IClick'], function(IClick){
     IClick.addDevice('mouse' , {
         start_event : 'mousedown',
         event_map : {
-            'mousedown'  : 'START_EVENT',
             'mouseup'    : 'M_END_EVENT',
             'mousemove'  : 'MOVE_EVENT'
         },
@@ -390,7 +395,6 @@ define('devices/mouse.js',['../IClick'], function(IClick){
                 },
                 "M_END_EVENT": {
                     "BUBBLING": function(event, _event) {
-                        this.state = "INITIAL";
                         this.reset();
                         if (this.firstClickTarget === _event.target) {
                             this.fireIClick();
@@ -408,7 +412,6 @@ define('devices/pointer.js',['../IClick'], function(IClick){
     IClick.addDevice('pointer', {
         start_event : 'pointerdown',
         event_map : {
-            'pointerdown' : 'START_EVENT',
             'pointerup'   : 'P_END_EVENT',
             'pointermove'  : 'P_MOVE_EVENT',
             'pointercancel': 'P_CANCEL_EVENT'
@@ -481,7 +484,6 @@ define('devices/touch.js',['../IClick'], function(IClick){
     IClick.addDevice('touch', {
         start_event : 'touchstart',
         event_map : {
-            'touchstart' : 'START_EVENT',
             'touchend'   : 'T_END_EVENT',
             'touchmove'  : 'T_MOVE_EVENT',
             'touchcancel': 'T_CANCEL_EVENT'
@@ -490,7 +492,6 @@ define('devices/touch.js',['../IClick'], function(IClick){
             "INITIAL": {
                 "START_EVENT": {
                     "CAPTURING": function(event, _event) {
-                        this.state = "TOUCHED";
                         // If there are more than two fingers touched
                         // the screen, do not fire IClick.
                         if (event.touches.length > 1) {

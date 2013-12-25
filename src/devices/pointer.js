@@ -3,7 +3,6 @@ define(['../IClick'], function(IClick){
     IClick.addDevice('pointer', {
         start_event : 'pointerdown',
         event_map : {
-            'pointerdown' : 'START_EVENT',
             'pointerup'   : 'P_END_EVENT',
             'pointermove'  : 'P_MOVE_EVENT',
             'pointercancel': 'P_CANCEL_EVENT'

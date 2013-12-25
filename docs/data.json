@@ -5,8 +5,8 @@
         "version": "1.0.0"
     },
     "files": {
-        "src/IClick.js": {
-            "name": "src/IClick.js",
+        "src/iClick.js": {
+            "name": "src/iClick.js",
             "modules": {},
             "classes": {
                 "IClick": 1
@@ -25,7 +25,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "file": "src/IClick.js",
+            "file": "src/iClick.js",
             "line": 33,
             "description": "This class provides a costume events that triggers immediately after\na user has clicked an element.\nClass supports adding new drivers to allow multiple devices inputs.",
             "is_constructor": 1,
@@ -41,8 +41,8 @@
     },
     "classitems": [
         {
-            "file": "src/IClick.js",
-            "line": 52,
+            "file": "src/iClick.js",
+            "line": 55,
             "description": "Adds device support",
             "itemtype": "method",
             "name": "addDevice",
@@ -79,8 +79,8 @@
             "class": "IClick"
         },
         {
-            "file": "src/IClick.js",
-            "line": 100,
+            "file": "src/iClick.js",
+            "line": 103,
             "itemtype": "property",
             "name": "event_name",
             "type": "{string}",
@@ -88,8 +88,8 @@
             "class": "IClick"
         },
         {
-            "file": "src/IClick.js",
-            "line": 109,
+            "file": "src/iClick.js",
+            "line": 112,
             "description": "whether or not to always prevent the real click event from firing",
             "itemtype": "property",
             "name": "prevent_click",
@@ -99,8 +99,8 @@
             "class": "IClick"
         },
         {
-            "file": "src/IClick.js",
-            "line": 116,
+            "file": "src/iClick.js",
+            "line": 119,
             "description": "use this property within a driver to prevent the event from triggering",
             "itemtype": "property",
             "name": "IClickPrevented",
@@ -110,8 +110,8 @@
             "class": "IClick"
         },
         {
-            "file": "src/IClick.js",
-            "line": 124,
+            "file": "src/iClick.js",
+            "line": 127,
             "description": "This property should be used by drivers to switch into the \"active\" stack",
             "itemtype": "property",
             "name": "state",
@@ -121,8 +121,8 @@
             "class": "IClick"
         },
         {
-            "file": "src/IClick.js",
-            "line": 141,
+            "file": "src/iClick.js",
+            "line": 144,
             "description": "attaches IClick to the root element",
             "itemtype": "method",
             "name": "attach",
@@ -132,8 +132,8 @@
             "class": "IClick"
         },
         {
-            "file": "src/IClick.js",
-            "line": 157,
+            "file": "src/iClick.js",
+            "line": 160,
             "description": "detaches IClick from the root element",
             "itemtype": "method",
             "name": "detach",
@@ -143,8 +143,8 @@
             "class": "IClick"
         },
         {
-            "file": "src/IClick.js",
-            "line": 178,
+            "file": "src/iClick.js",
+            "line": 181,
             "description": "check if user moved indicator more than allowed",
             "itemtype": "method",
             "name": "isMoved",
@@ -157,8 +157,8 @@
             "class": "IClick"
         },
         {
-            "file": "src/IClick.js",
-            "line": 204,
+            "file": "src/iClick.js",
+            "line": 207,
             "description": "fires the IClick event",
             "itemtype": "method",
             "name": "fireIClick",
@@ -168,8 +168,8 @@
             "class": "IClick"
         },
         {
-            "file": "src/IClick.js",
-            "line": 241,
+            "file": "src/iClick.js",
+            "line": 245,
             "description": "reset IClick checks. remove all events handlers. Must be called on canceling states.",
             "itemtype": "method",
             "name": "reset",
