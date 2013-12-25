@@ -36,6 +36,7 @@ define(['../IClick'], function(IClick){
                         if (this.firstClickTarget === _event.target) {
                             this.fireIClick();
                         }
+                        this.firstClickTarget = null;
                     }
                 }
             }

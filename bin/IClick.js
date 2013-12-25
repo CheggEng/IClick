@@ -399,6 +399,7 @@ define('devices/mouse.js',['../IClick'], function(IClick){
                         if (this.firstClickTarget === _event.target) {
                             this.fireIClick();
                         }
+                        this.firstClickTarget = null;
                     }
                 }
             }
@@ -523,12 +524,14 @@ define('devices/touch.js',['../IClick'], function(IClick){
                             if (this.firstTouchTarget === _event.target) {
                                 this.fireIClick();
                             }
+                            this.firstClickTarget = null;
                         }
                     }
                 },
                 "T_CANCEL_EVENT" : {
                     "CAPTURING" : function() {
                         this.reset();
+                        this.firstClickTarget = null;
                     }
                 }
             }
