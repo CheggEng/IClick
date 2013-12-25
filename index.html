@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="IClick : Immediate click support across multiple device inputs" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>IClick</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/CheggEng/IClick">View on GitHub</a>
+
+          <h1 id="project_title">IClick</h1>
+          <h2 id="project_tagline">Immediate click support across multiple device inputs</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/CheggEng/IClick/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/CheggEng/IClick/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="iclick" class="anchor" href="#iclick"><span class="octicon octicon-link"></span></a>IClick</h1>
+
+<p>On most touch devices, when a user clicks an element, there is a 300ms delay before the actual <code>click</code>
+event is fired.</p>
+
+<p>This library provides a costume event (default name is <code>iclick</code>) that would fire immediately after the user
+clicked the element.</p>
+
+<p>Browser support:</p>
+
+<ul>
+<li>Android 2.3+</li>
+<li>Chrome</li>
+<li>Safari</li>
+<li>Firefox</li>
+<li>IE9+</li>
+</ul><h2>
+<a name="unique-features" class="anchor" href="#unique-features"><span class="octicon octicon-link"></span></a>Unique features</h2>
+
+<ol>
+<li>Aside from providing support for touch and mouse, this library also supports adding new device drivers</li>
+<li>Supports multiple input devices at once (so Chrome on win8 will work on both touch and mouse)</li>
+<li>Allows for the user to prevent the real click event (either globally or on case-by-case basis). This is
+very important in cases where the clicked element in removed/moved/hidden before the real click fires.</li>
+<li>AMD support - can work with or without AMD.</li>
+<li>Since it uses DOM events, this library is completely cross-library</li>
+</ol><h2>
+<a name="basic-usage" class="anchor" href="#basic-usage"><span class="octicon octicon-link"></span></a>Basic usage</h2>
+
+<div class="highlight highlight-js"><pre><span class="nx">require</span><span class="p">([</span><span class="s1">'IClick'</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">IClick</span><span class="p">){</span>
+    <span class="k">new</span> <span class="nx">IClick</span><span class="p">();</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'some-target'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'iclick'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+
+<p>for more info on API and on how to add drivers, consult the <a href="http://cheggeng.github.io/IClick/docs">docs</a></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">IClick maintained by <a href="https://github.com/CheggEng">CheggEng</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
