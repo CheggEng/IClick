@@ -524,14 +524,16 @@ define('devices/touch.js',['../IClick'], function(IClick){
                             if (this.firstTouchTarget === _event.target) {
                                 this.fireIClick();
                             }
-                            this.firstClickTarget = null;
+                            this.firstTouchTarget = null;
+                            this.firstTouchIdentifier = null;
                         }
                     }
                 },
                 "T_CANCEL_EVENT" : {
                     "CAPTURING" : function() {
                         this.reset();
-                        this.firstClickTarget = null;
+                        this.firstTouchTarget = null;
+                        this.firstTouchIdentifier = null;
                     }
                 }
             }

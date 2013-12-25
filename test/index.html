@@ -34,8 +34,7 @@
         }
 
         require(['../src/IClick','../src/devices/touch','../src/devices/mouse'], function(IClick){
-            var target = document.querySelector('.target1');
-            new IClick(target);
+            new IClick();
 
             document.addEventListener('iclick', function(){
                 log("iclick triggered");
