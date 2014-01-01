@@ -3,7 +3,7 @@ define(['../IClick'], function(IClick){
         start_event : 'mousedown',
         event_map : {
             'mouseup'    : 'M_END_EVENT',
-            'mousemove'  : 'MOVE_EVENT'
+            'mousemove'  : 'M_MOVE_EVENT'
         },
         handlers :  {
             "INITIAL": {
