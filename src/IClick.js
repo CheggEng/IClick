@@ -210,13 +210,15 @@
          * @protected
          * @chainable
          */
-        fireIClick: function() {
+        fireIClick: function(e) {
+            if (!this.event) this.event = e;
+            
             var event = this.event,
                 _event = event.changedTouches ? event.changedTouches[0] : event,
                 target = _event.target,
                 IClickEvent;
 
-            if (this.moved && this.iclickPrevented) return;
+            if (this.moved || this.iclickPrevented) return;
 
             // Find the last touched element
             while (target.nodeType !== 1) {
@@ -237,7 +239,7 @@
 
             this.$fired = true;
             clearTimeout(this.handle);
-            this.handle = setTimeout(this.resetFiredFlag, 300);
+            this.handle = setTimeout(this.resetFiredFlag, 500);
 
             return this;
         },

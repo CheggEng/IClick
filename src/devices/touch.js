@@ -37,10 +37,10 @@ define(['../IClick'], function(IClick){
                 "T_END_EVENT": {
                     "BUBBLING": function(event, _event) {
                         if (event.touches.length === 0) {
-                            this.reset();
                             if (this.firstTouchTarget === _event.target) {
                                 this.fireIClick();
                             }
+                            this.reset();
                             this.firstTouchTarget = null;
                             this.firstTouchIdentifier = null;
                         }
