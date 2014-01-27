@@ -211,13 +211,15 @@
          * @protected
          * @chainable
          */
-        fireIClick: function() {
+        fireIClick: function(e) {
+            if (!this.event) this.event = e;
+            
             var event = this.event,
                 _event = event.changedTouches ? event.changedTouches[0] : event,
                 target = _event.target,
                 IClickEvent;
 
-            if (this.moved && this.iclickPrevented) return;
+            if (this.moved || this.iclickPrevented) return;
 
             // Find the last touched element
             while (target.nodeType !== 1) {
@@ -238,7 +240,7 @@
 
             this.$fired = true;
             clearTimeout(this.handle);
-            this.handle = setTimeout(this.resetFiredFlag, 300);
+            this.handle = setTimeout(this.resetFiredFlag, 500);
 
             return this;
         },
@@ -368,7 +370,7 @@ define('devices/mouse.js',['../IClick'], function(IClick){
         start_event : 'mousedown',
         event_map : {
             'mouseup'    : 'M_END_EVENT',
-            'mousemove'  : 'MOVE_EVENT'
+            'mousemove'  : 'M_MOVE_EVENT'
         },
         handlers :  {
             "INITIAL": {
@@ -522,10 +524,10 @@ define('devices/touch.js',['../IClick'], function(IClick){
                 "T_END_EVENT": {
                     "BUBBLING": function(event, _event) {
                         if (event.touches.length === 0) {
-                            this.reset();
                             if (this.firstTouchTarget === _event.target) {
                                 this.fireIClick();
                             }
+                            this.reset();
                             this.firstTouchTarget = null;
                             this.firstTouchIdentifier = null;
                         }

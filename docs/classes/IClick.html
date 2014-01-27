@@ -90,7 +90,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;src_iClick.js.html#l33"><code>src&#x2F;iClick.js:33</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;src_IClick.js.html#l33"><code>src&#x2F;IClick.js:33</code></a>
         </div>
     
 
@@ -152,7 +152,7 @@ Class supports adding new drivers to allow multiple devices inputs.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_iClick.js.html#l33"><code>src&#x2F;iClick.js:33</code></a>
+        <a href="..&#x2F;files&#x2F;src_IClick.js.html#l33"><code>src&#x2F;IClick.js:33</code></a>
         
         </p>
 
@@ -233,8 +233,31 @@ Class supports adding new drivers to allow multiple devices inputs.</p>
                                 
                             </li>
                         
+                            <li class="index-item method">
+                                <a href="#method_addDevice">addDevice</a>
+
+                                
+                                    <span class="flag static">static</span>
+                                
+                                
+                            </li>
+                        
                             <li class="index-item method public">
                                 <a href="#method_attach">attach</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method public">
+                                <a href="#method_attach">attach</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method public">
+                                <a href="#method_detach">detach</a>
 
                                 
                                 
@@ -255,7 +278,28 @@ Class supports adding new drivers to allow multiple devices inputs.</p>
                             </li>
                         
                             <li class="index-item method protected">
+                                <a href="#method_fireIClick">fireIClick</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
                                 <a href="#method_isMoved">isMoved</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method_isMoved">isMoved</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method protected">
+                                <a href="#method_reset">reset</a>
 
                                 
                                 
@@ -287,6 +331,22 @@ Class supports adding new drivers to allow multiple devices inputs.</p>
                                 
                             </li>
                         
+                            <li class="index-item property">
+                                <a href="#property_event_name">event_name</a>
+
+                                
+                                    <span class="flag static">static</span>
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property protected">
+                                <a href="#property_iclickPrevented">iclickPrevented</a>
+
+                                
+                                
+                            </li>
+                        
                             <li class="index-item property protected">
                                 <a href="#property_iclickPrevented">iclickPrevented</a>
 
@@ -296,6 +356,20 @@ Class supports adding new drivers to allow multiple devices inputs.</p>
                         
                             <li class="index-item property public">
                                 <a href="#property_prevent_click">prevent_click</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property public">
+                                <a href="#property_prevent_click">prevent_click</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item property protected">
+                                <a href="#property_state">state</a>
 
                                 
                                 
@@ -372,7 +446,181 @@ Class supports adding new drivers to allow multiple devices inputs.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_iClick.js.html#l55"><code>src&#x2F;iClick.js:55</code></a>
+        <a href="..&#x2F;files&#x2F;src_IClick.js.html#l55"><code>src&#x2F;IClick.js:55</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Adds device support</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">name</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>name of device</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">config</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>device configurations</p>
+                    </div>
+
+                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">start_event</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                
+
+                                <div class="param-description">
+                                    <p>name of start event</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">event_map</code>
+                                    <span class="type">Objcet</span>
+                                
+
+                                <div class="param-description">
+                                    <p>a map of event names and their phase name. eg:
+          {
+            mousedown : 'START<em>EVENT',
+            mousemove : 'MOVE</em>EVENT',
+            mouseup   : 'END_EVENT'
+          }</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">handlers</code>
+                                    <span class="type">Objcet</span>
+                                
+
+                                <div class="param-description">
+                                    <p>map of event handlers. basic structure:</p>
+
+<pre><code>     type : {
+      INITIAL : {
+           TYPE : {
+              CAPTURING : fn(ev,_ev){}, //optional
+              BUBBLING : fn(ev,_ev){} //optional
+           }
+      },
+      ACTIVE : {
+           TYPE : {
+               CAPTURING : fn(ev,_ev){}, //optional
+               BUBBLING : fn(ev,_ev){} //optional
+           }
+      }
+    }
+</code></pre>
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_addDevice" class="method item">
+    <h3 class="name"><code>addDevice</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>name</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>config</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag static">static</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;bin_IClick.js.html#l56"><code>bin&#x2F;IClick.js:56</code></a>
         
         </p>
 
@@ -532,7 +780,65 @@ Class supports adding new drivers to allow multiple devices inputs.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_iClick.js.html#l144"><code>src&#x2F;iClick.js:144</code></a>
+        <a href="..&#x2F;files&#x2F;bin_IClick.js.html#l145"><code>bin&#x2F;IClick.js:145</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>attaches IClick to the root element</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_attach" class="method item public">
+    <h3 class="name"><code>attach</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag public">public</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_IClick.js.html#l144"><code>src&#x2F;IClick.js:144</code></a>
         
         </p>
 
@@ -590,7 +896,65 @@ Class supports adding new drivers to allow multiple devices inputs.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_iClick.js.html#l160"><code>src&#x2F;iClick.js:160</code></a>
+        <a href="..&#x2F;files&#x2F;bin_IClick.js.html#l161"><code>bin&#x2F;IClick.js:161</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>detaches IClick from the root element</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_detach" class="method item public">
+    <h3 class="name"><code>detach</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag public">public</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_IClick.js.html#l160"><code>src&#x2F;IClick.js:160</code></a>
         
         </p>
 
@@ -648,7 +1012,65 @@ Class supports adding new drivers to allow multiple devices inputs.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_iClick.js.html#l207"><code>src&#x2F;iClick.js:207</code></a>
+        <a href="..&#x2F;files&#x2F;bin_IClick.js.html#l208"><code>bin&#x2F;IClick.js:208</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>fires the IClick event</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_fireIClick" class="method item protected">
+    <h3 class="name"><code>fireIClick</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_IClick.js.html#l207"><code>src&#x2F;IClick.js:207</code></a>
         
         </p>
 
@@ -708,7 +1130,79 @@ Class supports adding new drivers to allow multiple devices inputs.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_iClick.js.html#l181"><code>src&#x2F;iClick.js:181</code></a>
+        <a href="..&#x2F;files&#x2F;bin_IClick.js.html#l182"><code>bin&#x2F;IClick.js:182</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>check if user moved indicator more than allowed</p>
+    </div>
+
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_isMoved" class="method item protected">
+    <h3 class="name"><code>isMoved</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+        </span>
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_IClick.js.html#l181"><code>src&#x2F;IClick.js:181</code></a>
         
         </p>
 
@@ -778,7 +1272,65 @@ Class supports adding new drivers to allow multiple devices inputs.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_iClick.js.html#l245"><code>src&#x2F;iClick.js:245</code></a>
+        <a href="..&#x2F;files&#x2F;bin_IClick.js.html#l248"><code>bin&#x2F;IClick.js:248</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>reset IClick checks. remove all events handlers. Must be called on canceling states.</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="method_reset" class="method item protected">
+    <h3 class="name"><code>reset</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag chainable">chainable</span>
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_IClick.js.html#l247"><code>src&#x2F;IClick.js:247</code></a>
         
         </p>
 
@@ -833,7 +1385,53 @@ Class supports adding new drivers to allow multiple devices inputs.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_iClick.js.html#l103"><code>src&#x2F;iClick.js:103</code></a>
+        <a href="..&#x2F;files&#x2F;bin_IClick.js.html#l104"><code>bin&#x2F;IClick.js:104</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_event_name" class="property item">
+    <h3 class="name"><code>event_name</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+    
+
+    
+
+    
+
+    
+        <span class="flag static">static</span>
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_IClick.js.html#l103"><code>src&#x2F;IClick.js:103</code></a>
         
         </p>
 
@@ -879,7 +1477,53 @@ Class supports adding new drivers to allow multiple devices inputs.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_iClick.js.html#l119"><code>src&#x2F;iClick.js:119</code></a>
+        <a href="..&#x2F;files&#x2F;bin_IClick.js.html#l120"><code>bin&#x2F;IClick.js:120</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>use this property within a driver to prevent the event from triggering</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_iclickPrevented" class="property item protected">
+    <h3 class="name"><code>iclickPrevented</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_IClick.js.html#l119"><code>src&#x2F;IClick.js:119</code></a>
         
         </p>
 
@@ -925,7 +1569,53 @@ Class supports adding new drivers to allow multiple devices inputs.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_iClick.js.html#l112"><code>src&#x2F;iClick.js:112</code></a>
+        <a href="..&#x2F;files&#x2F;bin_IClick.js.html#l113"><code>bin&#x2F;IClick.js:113</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>whether or not to always prevent the real click event from firing</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_prevent_click" class="property item public">
+    <h3 class="name"><code>prevent_click</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+
+    
+
+    
+        <span class="flag public">public</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_IClick.js.html#l112"><code>src&#x2F;IClick.js:112</code></a>
         
         </p>
 
@@ -971,7 +1661,53 @@ Class supports adding new drivers to allow multiple devices inputs.</p>
             
         
         
-        <a href="..&#x2F;files&#x2F;src_iClick.js.html#l127"><code>src&#x2F;iClick.js:127</code></a>
+        <a href="..&#x2F;files&#x2F;bin_IClick.js.html#l128"><code>bin&#x2F;IClick.js:128</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>This property should be used by drivers to switch into the "active" stack</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+                    <div id="property_state" class="property item protected">
+    <h3 class="name"><code>state</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+    
+
+    
+        <span class="flag protected">protected</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;src_IClick.js.html#l127"><code>src&#x2F;IClick.js:127</code></a>
         
         </p>
 
