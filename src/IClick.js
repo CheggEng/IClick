@@ -303,11 +303,15 @@
             }
 
             this.event = event;
-
-            if (this.fireHandler(eventType, phase, event, _event) && this.state == 'INITIAL') {
-                this.addEvents();
-                this.initMoveCheck(_event);
-                this.state = 'ACTIVE';
+            
+            if (this.fireHandler(eventType, phase, event, _event)) {
+                if (this.state == 'INITIAL'){
+                    this.addEvents();
+                    this.initMoveCheck(_event);
+                    this.state = 'ACTIVE';
+                }
+            } else {
+                this.reset();
             }
 
             this.event = null;
