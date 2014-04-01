@@ -35,7 +35,8 @@ define(['../IClick'], function(IClick){
         }
     });
 
-    IClick.addDevice('MSPointer', {
+   /* Disabled at the moment because pointer{EVENT} is enough
+   IClick.addDevice('MSPointer', {
         start_event : 'mspointerdown',
         event_map : {
             'mspointerdown' : 'START_EVENT',
@@ -69,4 +70,5 @@ define(['../IClick'], function(IClick){
                 }
             }
         }
-    });});
+    });*/
+});
