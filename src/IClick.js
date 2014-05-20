@@ -40,13 +40,15 @@
      *
      * @param {Element}  [root] if provided will use this element as root element
      */
-    function IClick(root) {
+    function IClick(opts) {
         this.resetFiredFlag = this.resetFiredFlag.bind(this);
         this.eventHandlers = IClick.eventHandlers;
         this.start_events = IClick.start_events;
         this.event_map = IClick.event_map;
 
-        this.rootElement = root || document;
+        this.rootElement = (opts && opts.root) || document;
+
+        if (opts && opts.max_move) this.max_move = opts.max_move;
 
         this.attach();
     };
